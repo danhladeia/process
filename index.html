@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microprocessadores: O Cérebro dos Computadores</title>
+    <style>
+        /* Estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        /* Estilos de cabeçalho */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.4em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitulo {
+            font-style: italic;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        /* Estilos de seção */
+        section {
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #16a085;
+            margin-top: 25px;
+            font-size: 1.4em;
+            border-left: 4px solid #16a085;
+            padding-left: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        /* Elementos especiais */
+        .destaque {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .nota {
+            background-color: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.95em;
+        }
+        
+        .dica {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        /* Tabelas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 10px;
+            background-color: white;
+        }
+        
+        tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+        
+        /* Linha do tempo */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-left: 20px;
+        }
+        
+        .timeline:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background-color: #3498db;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 10px 20px 20px 30px;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 15px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #2980b9;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        /* Cards de componentes */
+        .componentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .componente-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #3498db;
+        }
+        
+        .componente-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .componente-card h4 {
+            color: #2980b9;
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        /* Questões */
+        .questoes {
+            background: linear-gradient(to bottom right, #e8f4f8, #d6eaf8);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 50px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .questao {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #3498db;
+        }
+        
+        .questao h3 {
+            border-left: none;
+            padding-left: 0;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .resposta {
+            margin-top: 15px;
+            min-height: 100px;
+            border: 1px dashed #bdc3c7;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        /* Glossário */
+        .glossario {
+            margin-top: 40px;
+            background-color: #f8f8f8;
+            padding: 25px;
+            border-radius: 8px;
+            column-count: 2;
+            column-gap: 30px;
+        }
+        
+        .termo {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+            break-inside: avoid-column;
+        }
+        
+        .termo h4 {
+            color: #16a085;
+            margin-bottom: 5px;
+        }
+        
+        /* Material complementar */
+        .material-complementar {
+            margin-top: 40px;
+            background-color: #f5f9fc;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .material-complementar h3 {
+            color: #2980b9;
+            border-left: none;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 0 8px 0;
+            margin-top: 25px;
+        }
+        
+        /* Rodapé */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+        }
+        
+        /* Configurações para impressão */
+        @media print {
+            body {
+                background-color: white;
+                font-size: 12pt;
+                color: black;
+            }
+            
+            header {
+                background: none;
+                color: black;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            header h1 {
+                color: #2c3e50;
+                text-shadow: none;
+            }
+            
+            section {
+                box-shadow: none;
+                page-break-inside: avoid;
+                padding: 0;
+                margin-bottom: 20px;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .questoes, .material-complementar, .glossario {
+                page-break-before: always;
+                background-color: white;
+                box-shadow: none;
+            }
+            
+            .questao, .componente-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .timeline:before {
+                background-color: #666;
+            }
+            
+            .timeline-item:before {
+                background: #666;
+                box-shadow: none;
+            }
+            
+            a:after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                font-style: italic;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            .componentes-grid {
+                display: block;
+            }
+            
+            .componente-card {
+                margin-bottom: 15px;
+            }
+            
+            .glossario {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Microprocessadores: O Cérebro dos Computadores</h1>
+        <p class="subtitulo">Uma jornada pelo coração da revolução digital</p>
+    </header>
+    
+    <main>
+        <section id="introducao">
+            <h2>O que é um Microprocessador?</h2>
+            <p>O microprocessador, comumente chamado de processador, é uma espécie de microchip especializado que funciona como o cérebro do computador. Trata-se de um circuito integrado que realiza as funções de cálculo e tomada de decisão, semelhante ao funcionamento do cérebro humano. Também é conhecido como Unidade Central de Processamento (UCP) ou, em inglês, CPU (Central Processing Unit).</p>
+            
+            <div class="destaque">
+                <p>Os processadores são os responsáveis por todo o processamento de dados em um computador, desde cálculos simples até a execução de jogos complexos e aplicações de inteligência artificial.</p>
+            </div>
+            
+            <p>O processador é o componente mais importante de qualquer dispositivo computacional, sendo ele quem determina a velocidade e capacidade de processamento do sistema. Desde smartphones e tablets até supercomputadores, todos dependem do microprocessador para funcionar.</p>
+        </section>
+        
+        <section id="funcoes">
+            <h2>Funções Principais</h2>
+            <p>Os processadores desempenham diversas funções essenciais que garantem o funcionamento adequado do computador:</p>
+            <ul>
+                <li><strong>Processamento de dados</strong>: Realizam cálculos de operações aritméticas e comparações lógicas, permitindo que o computador execute desde cálculos matemáticos simples até algoritmos complexos</li>
+                <li><strong>Gerenciamento do sistema</strong>: Mantêm o funcionamento de todos os equipamentos e programas através da unidade de controle, que interpreta e gerencia a execução de cada instrução do programa</li>
+                <li><strong>Administração de memória</strong>: Gerenciam a memória central (principal), além do programa submetido, e controlam os dados transferidos entre os elementos da máquina para processamento</li>
+                <li><strong>Processamento de comandos</strong>: Recebem dados e comandos do usuário, os administram e processam de acordo com instruções armazenadas na memória</li>
+                <li><strong>Transferência de informações</strong>: Transmitem informações para a placa-mãe, que serve de ponte entre o processador e outros componentes de hardware como monitor, impressora e outros dispositivos</li>
+            </ul>
+            
+            <div class="nota">
+                <p><strong>Importante:</strong> Os microprocessadores operam com números e símbolos representados no sistema binário, que utiliza apenas os dígitos 0 e 1 para representar todas as informações.</p>
+            </div>
+        </section>
+        
+        <section id="caracteristicas">
+            <h2>Características e Componentes</h2>
+            
+            <h3>Como é fabricado?</h3>
+            <p>O microprocessador moderno é um circuito integrado formado por uma camada chamada mesa epitaxial de silício, trabalhada para formar um cristal de extrema pureza. Este material é laminado até uma espessura mínima com grande precisão, depois cuidadosamente mascarado por um processo fotográfico e exposto a altas temperaturas em fornos com misturas gasosas de impurezas. Este processo é repetido várias vezes até formar a microarquitetura do componente.</p>
+            
+            <h3>Características Gerais</h3>
+            <p>Os processadores são caracterizados por diversos aspectos técnicos que determinam seu desempenho:</p>
+            
+            <div class="componentes-grid">
+                <div class="componente-card">
+                    <h4>Frequência (Clock)</h4>
+                    <p>Medida em hertz (Hz), define a capacidade do processador em processar informações simultaneamente. Quanto maior a frequência, mais rápido o processador pode executar instruções.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Núcleos (Cores)</h4>
+                    <p>O core é o núcleo do processador. Existem processadores single-core (um núcleo) e multi-core (vários núcleos na mesma peça), permitindo processamento paralelo de tarefas.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Memória Cache</h4>
+                    <p>É um tipo de memória auxiliar ultrarrápida que diminui o tempo de transmissão de informações entre o processador e outros componentes, acelerando o acesso a dados frequentemente utilizados.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Potência</h4>
+                    <p>Medida em Watts (W), representa a quantidade de energia que é consumida por segundo. 1W = 1 Joule por segundo, sendo um fator importante para eficiência energética.</p>
+                </div>
+            </div>
+            
+            <h3>Componentes Internos Principais</h3>
+            <ol>
+                <li><strong>ULA (Unidade Lógica Aritmética)</strong>: Circuito que se encarrega de realizar as operações matemáticas requisitadas pelos programas, como soma, subtração, multiplicação e divisão.</li>
+                <li><strong>Unidade de Controle</strong>: É o que há de mais próximo a um "cérebro" dentro do processador. Define o regime de funcionamento e dá ordem às diversas tarefas do processador.</li>
+                <li><strong>Registradores</strong>: Pequenas memórias velozes que armazenam comandos ou valores utilizados no controle e processamento de cada instrução. Os mais importantes são:
+                    <ul>
+                        <li>Contador de Programa (PC) - Sinaliza para a próxima instrução a ser executada</li>
+                        <li>Registrador de Instrução (IR) - Registra a execução da instrução</li>
+                    </ul>
+                </li>
+                <li><strong>Unidade de Ponto Flutuante</strong>: Para trabalhar com números muito grandes (64, 128 bits)</li>
+                <li><strong>Unidade de Gerenciamento de Memória (MMU)</strong>: Transforma endereços virtuais em endereços físicos</li>
+            </ol>
+        </section>
+        
+        <section id="fabricantes">
+            <h2>Principais Fabricantes</h2>
+            <p>O mercado de processadores é dominado principalmente por três empresas:</p>
+            
+            <table>
+                <tr>
+                    <th>Fabricante</th>
+                    <th>Slogan</th>
+                    <th>Produtos Principais</th>
+                    <th>Sede</th>
+                </tr>
+                <tr>
+                    <td>Intel Corporation</td>
+                    <td>"Leap ahead"</td>
+                    <td>Microprocessadores, chipsets, memórias flash, placas de rede e placas-mãe</td>
+                    <td>Santa Clara, Califórnia, EUA</td>
+                </tr>
+                <tr>
+                    <td>AMD (Advanced Micro Devices)</td>
+                    <td>"The future is fusion"</td>
+                    <td>Microprocessadores, chipsets, aceleradores gráficos</td>
+                    <td>Sunnyvale, Califórnia, EUA</td>
+                </tr>
+                <tr>
+                    <td>IBM (International Business Machines)</td>
+                    <td>"Um Planeta Mais Inteligente"</td>
+                    <td>Hardware e Software</td>
+                    <td>Armonk, Nova York, EUA</td>
+                </tr>
+            </table>
+            
+            <p>Estas empresas têm sido responsáveis pelos principais avanços na tecnologia de processadores ao longo das décadas, impulsionando a evolução dos computadores e dispositivos eletrônicos.</p>
+        </section>
+        
+        <section id="evolucao">
+            <h2>Evolução Histórica dos Processadores</h2>
+            <p>A história dos processadores representa uma das evoluções tecnológicas mais impressionantes da humanidade, com avanços significativos em apenas algumas décadas:</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">1971</span>
+                    <p><strong>Intel 4004</strong>: O primeiro microprocessador da história, desenvolvido para calculadoras. Com clock de 740 KHz, conseguia calcular até 92 mil instruções por segundo.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1973</span>
+                    <p><strong>Intel 8008</strong>: CPU de 8 bits com aproximadamente 3.500 transistores, implementada sobre as tecnologias TTL MSI.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1974</span>
+                    <p><strong>Intel 8080</strong>: Primeiro processador voltado para computadores pessoais, com 4.800 transistores. Conseguia executar 290.000 operações por segundo.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1978-1979</span>
+                    <p><strong>Intel 8086/8088</strong>: Primeiro processador com CPU de 16 bits, contendo 29.000 transistores. O 8088 foi escolhido pela IBM para seu primeiro computador pessoal.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1982</span>
+                    <p><strong>Intel 80286 e AMD286</strong>: Processadores de 16 bits com 134.000 transistores. Multitarefa e com função de segurança embutida para proteção de dados.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1985</span>
+                    <p><strong>Intel 386 e AMD386</strong>: Inovação com processadores de 32 bits, 275.000 transistores e frequências de até 40 MHz.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1989</span>
+                    <p><strong>Intel 486</strong>: Primeiro processador com coprocessador matemático integrado e cache L1. Contava com 1.200.000 transistores.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1993</span>
+                    <p><strong>Intel Pentium</strong>: Marco tecnológico com 3.100.000 transistores. Em suas primeiras versões, trabalhava a 66MHz e executava cerca de 112 MIPS.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1995-1997</span>
+                    <p><strong>Pentium PRO, AMD-K5, AMD-K6 e Pentium II</strong>: Introdução da cache L2 e tecnologias como MMX para processamento multimídia.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">1999</span>
+                    <p><strong>AMD Athlon</strong>: Primeiro processador com frequência acima de 1GHz, rompendo com o modelo de chips compatíveis com os Intel.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">2000-2006</span>
+                    <p><strong>Pentium 4 e arquiteturas 64 bits</strong>: Desenvolvimento do AMD64, que se tornou o padrão de 64 bits. O Pentium 4 tinha 42 milhões de transistores.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">2005</span>
+                    <p><strong>Dual e Quad Core</strong>: Surgimento dos processadores multi-core como o Intel Pentium D, AMD 64X2, Intel Core 2 Duo e AMD Phenom X4.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="timeline-year">2007-2008</span>
+                    <p><strong>Intel Core i3, i5 e i7</strong>: Nova geração com microarquitetura Nehalem, controlador interno de memória e tecnologias como Hyper Threading.</p>
+                </div>
+            </div>
+            
+            <div class="nota">
+                <p>A evolução dos processadores demonstra a Lei de Moore em ação: o número de transistores em um chip dobra aproximadamente a cada dois anos, resultando em um aumento exponencial de desempenho.</p>
+            </div>
+        </section>
+        
+        <section id="tendencias">
+            <h2>Tendências Futuras</h2>
+            <p>Com o avanço das tecnologias de fabricação, os processadores continuam evoluindo para designs com mais núcleos e maior eficiência energética. Novas arquiteturas buscam superar os limites físicos da Lei de Moore, que prevê o dobro de transistores a cada dois anos. Algumas das tendências incluem:</p>
+            
+            <div class="componentes-grid">
+                <div class="componente-card">
+                    <h4>Processadores com muitos núcleos</h4>
+                    <p>Desenvolvimento de chips com dezenas ou até centenas de núcleos em uma única peça, possibilitando processamento massivamente paralelo.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Computação neuromórfica</h4>
+                    <p>Processadores inspirados no funcionamento do cérebro humano, com capacidade de aprendizado e processamento de informações semelhante a redes neurais.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Computação quântica</h4>
+                    <p>Utilização de propriedades quânticas como superposição e entrelaçamento para resolver problemas complexos muito mais rapidamente que processadores tradicionais.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Materiais alternativos</h4>
+                    <p>Além do silício, novos materiais como grafeno e nanotubos de carbono podem permitir processadores mais rápidos e eficientes.</p>
+                </div>
+            </div>
+            
+            <p>Os desafios para o futuro dos processadores incluem o equilíbrio entre desempenho e consumo energético, a miniaturização contínua dos componentes e a adaptação a novas tecnologias como inteligência artificial e Internet das Coisas (IoT).</p>
+        </section>
+        
+        <section class="questoes" id="questoes">
+            <h2>Questões para Avaliação</h2>
+            
+            <div class="questao">
+                <h3>Questão 1</h3>
+                <p>Explique o que é um microprocessador e por que ele é considerado o "cérebro" do computador. Cite pelo menos três funções principais que ele desempenha.</p>
+                <div class="resposta">
+                    <p class="dica">Espaço para resposta do aluno. Espera-se que mencione o conceito de circuito integrado especializado e funções como processamento de dados, gerenciamento do sistema e administração de memória.</p>
+                </div>
+            </div>
+            
+            <div class="questao">
+                <h3>Questão 2</h3>
+                <p>Descreva como ocorre o processo de fabricação de um microprocessador moderno, desde o material utilizado até as etapas de produção.</p>
+                <div class="resposta">
+                    <p class="dica">Espaço para resposta do aluno. Deve abordar a mesa epitaxial de silício, o processo de mascaramento fotográfico e a exposição a altas temperaturas com misturas gasosas.</p>
+                </div>
+            </div>
+            
+            <div class="questao">
+                <h3>Questão 3</h3>
+                <p>Quais são as principais características que determinam o desempenho de um processador? Explique cada uma delas e sua importância.</p>
+                <div class="resposta">
+                    <p class="dica">Espaço para resposta do aluno. Espera-se que aborde frequência (clock), número de núcleos, memória cache e potência.</p>
+                </div>
+            </div>
+            
+            <div class="questao">
+                <h3>Questão 4</h3>
+                <p>Explique a diferença entre processadores single-core e multi-core. Quais as vantagens da arquitetura multi-core para a computação moderna?</p>
+                <div class="resposta">
+                    <p class="dica">Espaço para resposta do aluno. Deve abordar o conceito de processamento paralelo e os benefícios para multitarefa.</p>
+                </div>
+            </div>
+            
+            <div class="questao">
+                <h3>Questão 5</h3>
+                <p>Cite e explique duas inovações tecnológicas importantes na história dos processadores e como elas impactaram o desenvolvimento dos computadores.</p>
+                <div class="resposta">
+                    <p class="dica">Espaço para resposta do aluno. Pode abordar inovações como a introdução do coprocessador matemático, cache L2, tecnologia MMX, arquitetura 64 bits, etc.</p>
+                </div>
+            </div>
+            
+            <div class="questao">
+                <h3>Questão 6</h3>
+                <p>Compare Intel e AMD como fabricantes de processadores, abordando aspectos como arquitetura, desempenho e contribuições tecnológicas ao longo da história.</p>
+                <div class="resposta">
+                    <p class="dica">Espaço para resposta do aluno. Espera-se uma análise comparativa das duas empresas, mencionando marcos como o AMD64 e as diferentes séries de processadores.</p>
+                </div>
+            </div>
+            
+            <div class="questao">
+                <h3>Questão 7</h3>
+                <p>Quais são as tendências futuras no desenvolvimento de processadores? Escolha uma dessas tendências e explique como ela pode impactar a computação nos próximos anos.</p>
+                <div class="resposta">
+                    <p class="dica">Espaço para resposta do aluno. Pode abordar processadores com muitos núcleos, computação neuromórfica, computação quântica ou novos materiais.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="material-complementar" id="material-complementar">
+            <h2>Material Complementar</h2>
+            
+            <h3>Atividades Práticas Sugeridas</h3>
+            <div class="componentes-grid">
+                <div class="componente-card">
+                    <h4>Estudo Comparativo</h4>
+                    <p>Escolha dois processadores de gerações diferentes e faça uma comparação detalhada, analisando suas características, desempenho e aplicações. Utilize tabelas e gráficos para facilitar a visualização das diferenças.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Linha do Tempo Interativa</h4>
+                    <p>Em grupos, crie uma linha do tempo física ou digital mais detalhada sobre a evolução dos processadores, incluindo imagens e fatos interessantes sobre cada marco tecnológico.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Processadores em Diversos Dispositivos</h4>
+                    <p>Investigue como os processadores são utilizados em diferentes dispositivos (smartphones, tablets, consoles) e suas características específicas. Compare o desempenho e a eficiência energética.</p>
+                </div>
+                
+                <div class="componente-card">
+                    <h4>Debate Sobre o Futuro</h4>
+                    <p>Organize um debate sobre as tendências futuras dos processadores e como elas podem impactar diversos campos como medicina, educação e transporte. Pesquise e defenda diferentes perspectivas.</p>
+                </div>
+            </div>
+            
+            <h3>Leituras Recomendadas</h3>
+            <ul>
+                <li>Patterson, D. A., & Hennessy, J. L. (2017). <em>Arquitetura de Computadores: Uma Abordagem Quantitativa</em>. Elsevier Brasil.</li>
+                <li>Stallings, W. (2015). <em>Arquitetura e Organização de Computadores</em>. Pearson.</li>
+                <li>Tanenbaum, A. S. (2013). <em>Organização Estruturada de Computadores</em>. Pearson.</li>
+                <li>Null, L., & Lobur, J. (2019). <em>Princípios Básicos de Arquitetura e Organização de Computadores</em>. Bookman.</li>
+            </ul>
+            
+            <h3>Recursos Online</h3>
+            <ul>
+                <li><a href="https://www.intel.com.br/content/www/br/pt/products/docs/processors/what-is-a-processor.html">Intel: O que é um processador</a></li>
+                <li><a href="https://www.amd.com/pt/technologies">AMD: Tecnologias e Inovações</a></li>
+                <li><a href="https://www.computerhistory.org/timeline/computers/">Computer History Museum: Timeline of Computer History</a></li>
+                <li><a href="https://www.youtube.com/watch?v=cNN_tTXABUA">Vídeo: Como funciona um processador (CPU)</a></li>
+            </ul>
+        </section>
+        
+        <section class="glossario" id="glossario">
+            <h2>Glossário de Termos</h2>
+            
+            <div class="termo">
+                <h4>Cache</h4>
+                <p>Memória de acesso rápido que armazena dados frequentemente utilizados para reduzir o tempo de acesso a eles.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>Clock</h4>
+                <p>Sinal que sincroniza as operações em um circuito digital, medido em Hertz (Hz).</p>
+            </div>
+            
+            <div class="termo">
+                <h4>Core (Núcleo)</h4>
+                <p>Unidade de processamento independente dentro de um CPU que pode executar instruções.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>Hyper Threading</h4>
+                <p>Tecnologia da Intel que permite que um único core físico execute dois threads simultaneamente.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>MMU (Memory Management Unit)</h4>
+                <p>Componente responsável por traduzir endereços virtuais em endereços físicos na memória.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>MIPS (Milhões de Instruções Por Segundo)</h4>
+                <p>Medida de velocidade usada para avaliar o desempenho de processadores.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>Multicore</h4>
+                <p>Processador que contém dois ou mais núcleos de processamento independentes.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>SIMD (Single Instruction, Multiple Data)</h4>
+                <p>Técnica que permite executar a mesma operação em múltiplos dados simultaneamente.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>Transistor</h4>
+                <p>Componente eletrônico básico usado para amplificar ou comutar sinais eletrônicos.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>ULA (Unidade Lógica Aritmética)</h4>
+                <p>Circuito digital que realiza operações aritméticas e lógicas dentro do processador.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>Thread</h4>
+                <p>Sequência de instruções que pode ser processada de forma independente pelo processador.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>Die</h4>
+                <p>O chip de silício onde é construído o processador, contendo todos os circuitos e transistores.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>TDP (Thermal Design Power)</h4>
+                <p>Quantidade máxima de calor gerada por um processador que o sistema de resfriamento precisa dissipar.</p>
+            </div>
+            
+            <div class="termo">
+                <h4>FSB (Front-Side Bus)</h4>
+                <p>Barramento que conecta o processador à memória principal e outros componentes do sistema.</p>
+            </div>
+        </section>
+        
+        <section id="exercicios-praticos">
+            <h2>Exercícios Práticos</h2>
+            
+            <h3>Atividade 1: Análise de Especificações</h3>
+            <p>Pesquise e analise as especificações técnicas de dois processadores lançados nos últimos cinco anos. Compare-os quanto a:</p>
+            <ul>
+                <li>Número de núcleos e threads</li>
+                <li>Frequência base e turbo</li>
+                <li>Tamanho da memória cache</li>
+                <li>Processo de fabricação (nm)</li>
+                <li>TDP (Thermal Design Power)</li>
+                <li>Desempenho em aplicações específicas (jogos, edição de vídeo, etc.)</li>
+            </ul>
+            <p>Elabore um relatório comparativo com suas conclusões sobre qual processador é mais adequado para diferentes tipos de uso.</p>
+            
+            <h3>Atividade 2: Simulação de Funcionamento</h3>
+            <p>Utilize um software simulador de processador (como o "CPU Sim" ou "Logisim") para:</p>
+            <ol>
+                <li>Criar um circuito lógico simples que simule uma ULA básica</li>
+                <li>Implementar operações básicas como soma e subtração</li>
+                <li>Observar o fluxo de dados através do circuito</li>
+                <li>Elaborar um relatório explicando o funcionamento do seu circuito</li>
+            </ol>
+            
+            <h3>Atividade 3: Pesquisa de Campo</h3>
+            <p>Entreviste pessoas que utilizam computadores para diferentes finalidades (estudantes, designers gráficos, gamers, programadores) e pergunte sobre:</p>
+            <ul>
+                <li>Qual processador utilizam?</li>
+                <li>Por que escolheram esse modelo específico?</li>
+                <li>Quais são as exigências de desempenho para suas atividades?</li>
+                <li>Se já perceberam limitações do processador durante o uso</li>
+            </ul>
+            <p>Compile os resultados e analise como diferentes necessidades influenciam na escolha de um processador.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Material didático sobre Microprocessadores - Produzido para fins educacionais</p>
+        <p>Data de elaboração: Maio de 2025</p>
+        <p>Este material pode ser reproduzido livremente para uso educacional, desde que citada a fonte.</p>
+        
+        <div class="no-print">
+            <p>Desenvolvido por [Nome do Professor/Instituição]</p>
+            <p>Versão 1.0</p>
+        </div>
+    </footer>
+</body>
+</html>
